@@ -15639,6 +15639,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\Home\\AddPartial.cshtml",
+      "TargetPath": "Views\\Home\\AddPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\Shared\\_SignIn.cshtml",
       "TargetPath": "Views\\Shared\\_SignIn.cshtml",
       "FileKind": "mvc"

@@ -6,7 +6,7 @@
 <div class="ToDo">
     <div class="card" style="width: 18rem;">
         <div class="card-header">
-            <h3>To Do</h3>
+            <h3>To Do <partial name="AddPartial"/></h3>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Cras justo odio</li>
@@ -39,7 +39,12 @@
         </ul>
     </div>
 </div>
-
-
-
 </div>
+
+<script type="text/javascript">
+$("#loadPartialView").click(function () {
+    $.get('@Url.Action("LoadPartialView","Home")', {}, function (response) {
+        $("#Display").html(response);
+    });
+});
+</script>
