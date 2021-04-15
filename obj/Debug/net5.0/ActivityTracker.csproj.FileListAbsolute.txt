@@ -42,3 +42,5 @@ D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Shared\_SignIn.c
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\SignIn\Index.cshtml.g.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\SignIn\LoginPartial.cshtml.g.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\SignIn\RegisterPartial.cshtml.g.cs
+D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\ToDo.cshtml.g.cs
+D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\Teams.cshtml.g.cs

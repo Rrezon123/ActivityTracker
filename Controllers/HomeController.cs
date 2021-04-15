@@ -23,6 +23,16 @@ namespace ActivityTracker.Controllers
         {
             return View();
         }
+        [HttpGet("ToDo")]
+        public IActionResult ToDo()
+        {
+            return View();
+        }
+        [HttpGet("Teams")]
+        public IActionResult Teams()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
