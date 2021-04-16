@@ -4,48 +4,65 @@
 }
 
 <div class="card-deck">
-<div class="ToDo">
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            <h3>To Do <partial name="AddPartial"/></h3>
+    <div class="ToDo">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h3>To Do
+                    <partial name="AddPartial" />
+                </h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach(var todo in Model){
+                    if(todo.Status==1){
+                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">@todo.Title</h5>
+                            <partial name="ShowPartial"/>
+                        </div>
+                    </div>
+                    }
+                }
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
     </div>
-</div>
-<div class="Doing">
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            <h3>Doing</h3>
+   <div class="Doing">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h3>Doing</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach(var todo in Model){
+                    if(todo.Status==2){
+                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">@todo.Title</h5>
+                            <partial name="ShowPartial"/>
+                        </div>
+                    </div>
+                    }
+                }
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
     </div>
-</div>
-<div class="Done">
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            <h3>Done</h3>
+    <div class="Done">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h3>Done</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach(var todo in Model){
+                    if(todo.Status==3){
+                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
+                        <div class="card-body">
+                            <h5 class="card-title">@todo.Title</h5>
+                            <partial name="ShowPartial"/>
+                        </div>
+                    </div>
+                    }
+                }
+            </ul>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
     </div>
-</div>
 </div>
 
-<script type="text/javascript">
-$("#loadPartialView").click(function () {
-    $.get('@Url.Action("LoadPartialView","Home")', {}, function (response) {
-        $("#Display").html(response);
-    });
-});
-</script>
+

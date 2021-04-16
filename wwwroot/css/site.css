@@ -414,6 +414,10 @@ footer .container{
 	margin-top:50px
 }
 
+.card.card-task{
+	margin-top:20px;
+}
+
 
 @media (min-width: 576px) and (max-width: 767.98px) { 
 	.card-deck  {
@@ -472,4 +476,6 @@ footer .container{
 .container .teams .team h2{
 	margin-left:-10%;
 	margin-bottom: 8%;
+	color:#fff;
+	
 }

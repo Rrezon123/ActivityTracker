@@ -15619,6 +15619,11 @@
   "RootNamespace": "ActivityTracker",
   "Documents": [
     {
+      "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\Home\\AddTeam.cshtml",
+      "TargetPath": "Views\\Home\\AddTeam.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\SignIn\\LoginPartial.cshtml",
       "TargetPath": "Views\\SignIn\\LoginPartial.cshtml",
       "FileKind": "mvc"
@@ -15641,6 +15646,11 @@
     {
       "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\Home\\AddPartial.cshtml",
       "TargetPath": "Views\\Home\\AddPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\ActivityTracker\\ActivityTracker\\Views\\Home\\ShowPartial.cshtml",
+      "TargetPath": "Views\\Home\\ShowPartial.cshtml",
       "FileKind": "mvc"
     },
     {
