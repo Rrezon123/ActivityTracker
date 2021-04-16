@@ -30,9 +30,9 @@ namespace ActivityTracker.Controllers
         [HttpGet("Index")]
         public IActionResult Index()
         {
-             if (loggedInUser == null)
+            if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
-            ViewBag.User=_context.Users.FirstOrDefault(u=>u.UserId==loggedInUser.UserId);
+            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
             return View();
         }
         [HttpGet("ToDo")]
@@ -40,25 +40,33 @@ namespace ActivityTracker.Controllers
         {
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
-
-            ViewBag.ShowToDo = _context.ToDos.FirstOrDefault(todo => todo.ToDoId == HttpContext.Session.GetInt32("todoId"));
-            return View();
+            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
+            ViewBag.Todos = _context.ToDos;
+            var ToDo = _context.ToDos.Include(u => u.UserOfTask);
+            return View(ToDo.ToList());
         }
         [HttpGet("Teams")]
         public IActionResult Teams()
         {
-             if (loggedInUser == null)
+            if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
-
+            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
             return View();
         }
 
-
+        [HttpGet("{todoid}")]
+        public IActionResult ShowToDo(int todoid)
+        {
+            ViewBag.ShowToDo = _context.ToDos.FirstOrDefault(todo => todo.ToDoId == todoid);
+            return RedirectToAction("ToDo");
+        }
         [HttpPost("AddToDo")]
         public IActionResult AddToDo(ToDo newTodo)
         {
+            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
             if (ModelState.IsValid)
             {
+                newTodo.UserId = loggedInUser.UserId;
                 _context.ToDos.Add(newTodo);
                 _context.SaveChanges();
                 HttpContext.Session.SetInt32("todoId", newTodo.ToDoId);
@@ -77,12 +85,23 @@ namespace ActivityTracker.Controllers
             }
             else
             {
-                editedToDo.Status=3;
+                editedToDo.Status = 3;
             }
 
             editedToDo.UpdatedAt = DateTime.Now;
             _context.SaveChanges();
             return RedirectToAction("ToDo");
+        }
+        [HttpPost("TeamAdd")]
+        public IActionResult TeamAdd(Team newTeam)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Teams.Add(newTeam);
+                _context.SaveChanges();
+                return RedirectToAction("Teams");
+            }
+            return View("");
         }
         public IActionResult Privacy()
         {
