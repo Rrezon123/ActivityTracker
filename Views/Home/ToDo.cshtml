@@ -1,7 +1,7 @@
-@model IEnumerable<ToDo>
-@{
+@model List<ToDo>
+@* @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+} *@
 
 <div class="card-deck">
     <div class="ToDo">
@@ -12,33 +12,48 @@
                 </h3>
             </div>
             <ul class="list-group list-group-flush">
-                @foreach(var todo in Model){
-                    if(todo.Status==1){
-                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
-                        <div class="card-body">
-                            <h5 class="card-title">@todo.Title</h5>
-                            <partial name="ShowPartial"/>
-                        </div>
-                    </div>
+                @if (Model != null)
+                {
+                    @foreach (var todo in Model)
+                    {
+                        if (todo.Status == 1 && todo.UserId == ViewBag.User.UserId)
+                        {
+                            <div class="card card-task " style="margin-top:20px;">
+                                @* bg-@todo.Importance *@
+                                <div class="card-body">
+                                    <h5 class="card-title">@todo.Title</h5>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    asp-route-todoid="@todo.ToDoId" asp-action="ShowToDo" data-target="#ShowMore">More</button>
+                                    
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </ul>
         </div>
     </div>
-   <div class="Doing">
+    <div class="Doing">
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h3>Doing</h3>
             </div>
             <ul class="list-group list-group-flush">
-                @foreach(var todo in Model){
-                    if(todo.Status==2){
-                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
-                        <div class="card-body">
-                            <h5 class="card-title">@todo.Title</h5>
-                            <partial name="ShowPartial"/>
-                        </div>
-                    </div>
+                @if (Model != null)
+                {
+                    @foreach (var todo in Model)
+                    {
+                        if (todo.Status == 2 && todo.UserId == ViewBag.User.UserId)
+                        {
+                            <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">@todo.Title</h5>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            asp-route-todoid="@todo.ToDoId" asp-action="ShowToDo" data-target="#ShowMore">More</button>
+                                    <partial name="ShowPartial" />
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </ul>
@@ -50,19 +65,24 @@
                 <h3>Done</h3>
             </div>
             <ul class="list-group list-group-flush">
-                @foreach(var todo in Model){
-                    if(todo.Status==3){
-                    <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
-                        <div class="card-body">
-                            <h5 class="card-title">@todo.Title</h5>
-                            <partial name="ShowPartial"/>
-                        </div>
-                    </div>
+                @if (Model != null)
+                {
+                    @foreach (var todo in Model)
+                    {
+                        if (todo.Status == 3 && todo.UserId == ViewBag.User.UserId)
+                        {
+                            <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">@todo.Title</h5>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            asp-route-todoid="@todo.ToDoId" asp-action="ShowToDo" data-target="#ShowMore">More</button>
+                                    <partial name="ShowPartial" />
+                                </div>
+                            </div>
+                        }
                     }
                 }
             </ul>
         </div>
     </div>
 </div>
-
-

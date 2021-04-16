@@ -78,6 +78,9 @@ namespace ActivityTracker.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("CurrentTeamTeamId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -95,15 +98,12 @@ namespace ActivityTracker.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("CurrentTeamTeamId");
 
                     b.ToTable("Users");
                 });
@@ -121,9 +121,7 @@ namespace ActivityTracker.Migrations
                 {
                     b.HasOne("ActivityTracker.Models.Team", "CurrentTeam")
                         .WithMany("AllUsers")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrentTeamTeamId");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,27 +1,33 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore">Insert</button>
+@model ToDo
 <div id="ShowMore" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"></h5>
+                <h5 class="modal-title">@Model.Title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+
                 <div class="more">
                     <div class="description">
                         <h4>Description<h4>
-                                <p> @ViewBag.ShowToDo.Description</p>
+                                @* @if (ViewBag.ShowToDo.Description != null)
+                                {
+                                    <p> @ViewBag.ShowToDo.Description</p>
+                                } *@
+                                <p>@Model.Description</p>
+
                     </div>
                     <div class="Status">
                         <h4>Status<h4>
-                        <p> @ViewBag.ShowToDo.Status</p>
+                                @* <p> @ViewBag.ShowToDo.Status</p> *@
+                                <p>@Model.Status</p>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Insert</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>

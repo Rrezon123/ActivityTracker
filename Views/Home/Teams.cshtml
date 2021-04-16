@@ -5,6 +5,7 @@
 
 <div class="teams">
     <partial name="AddTeam"/>
+    @if(Model!=null){
     @foreach (var item in Model)
     {
         <div class="team">
@@ -29,5 +30,5 @@
             </ol>
         </div>
     }
-
+    }
 </div>

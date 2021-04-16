@@ -148,3 +148,4 @@ D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\runtimes\win\lib\netstandard
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\ActivityTracker.MvcApplicationPartsAssemblyInfo.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\AddPartial.cshtml.g.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\ShowPartial.cshtml.g.cs
+D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\AddTeam.cshtml.g.cs

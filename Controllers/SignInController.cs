@@ -26,6 +26,7 @@ namespace Activity_Center.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+            ViewBag.Teams=_context.Teams.ToList();
             return View();
         }
         [HttpPost("Register")]

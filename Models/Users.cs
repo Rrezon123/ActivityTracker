@@ -7,7 +7,6 @@ namespace ActivityTracker.Models{
     public class User{
         [Key]
         public int UserId { get; set; }
-        public int TeamId{get;set;}
 
         [Display(Name="First Name")]
         [Required(ErrorMessage = "It needs to have a First Name")]
