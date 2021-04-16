@@ -1,38 +1,39 @@
+@model User
 <div class="sign-in">  
     <div class="row">
       
         <div class="col">
-            <form method="post">
-
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input class="form-control" />
-                    <span class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Register" class="btn btn-primary" />
-                </div>
-            </form>
+           <form asp-action="Register" asp-controller="SignIn" method="post">
+        
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
         </div>
     </div>
 </div>

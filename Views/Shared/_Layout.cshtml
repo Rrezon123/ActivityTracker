@@ -19,7 +19,7 @@
             <div class="ms-2">
                 <p class="mt-1 mb-0">Welcome,</p>
                 <h5 class="fs-6 mb-0">
-                    <a class="text-decoration-none" href="#">Rrezon Pllana</a>
+                    <a class="text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">Rrezon Pllana</a>
                 </h5>
                 
             </div>
@@ -27,19 +27,19 @@
 
         <ul class="categories list-unstyled">
             <li class="has-dropdown">
-                <i class="uil-estate fa-fw"></i><a href="#"> Dashboard</a>
+                <i class="uil-estate fa-fw"></i><a asp-area="" asp-controller="Home" asp-action="Index"> Dashboard</a>
 
             </li>
             <li class="">
-                <i class="uil-folder"></i><a href="#"> File manager</a>
+                <i class="uil-folder"></i><a asp-area="" asp-controller="Home" asp-action="ToDo"> ToDo</a>
             </li>
             <li class="has-dropdown">
-                <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
+                <i class="uil-calendar-alt"></i><a asp-area="" asp-controller="Home" asp-action="Teams"> Teams</a>
 
             </li>
         </ul>
     </aside>
-    <div class="container">
+    <div  class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

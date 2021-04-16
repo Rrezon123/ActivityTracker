@@ -85,6 +85,9 @@ namespace ActivityTracker.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

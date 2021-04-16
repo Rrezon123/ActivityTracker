@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 *{
   margin: 0;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 body{
   background-color:#7d5ac3;
@@ -87,18 +88,31 @@ body {
 
 
 /*-----Register Login Page----------*/
-.container .text-center{
+@media (min-width: 1200px){
+	#primary{
+    max-width: 1085px;
+	margin: auto;
+	}
+}
+.control-label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+.container-fluid .text-center{
   text-align: center;
   color: #fff;
   margin: 25px;
 }
-.container .text-center h1{
+.container-fluid  .text-center h1{
   font-size: 3.4rem;
 }
-.container .row{
+.container-fluid  .row{
   justify-content: space-between;
 }
-.container h2{
+.container-fluid  h2{
   color:#fff;
   margin-top: 70px;
 }
@@ -128,11 +142,6 @@ footer .container{
 	--sidebar-width: 250px;
 }
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 
 #wrapper {
 	margin-left: var(--sidebar-width);
@@ -386,35 +395,45 @@ footer .container{
 #ModalInsert{
 	font-size:22px;	
 }
-
-
-
-@media (min-width: 1200px){
-	.container {
-    max-width: 1085px;
-	margin-left: 300px;
-	}
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+	.ToDo{
+		margin-left:10px;
+		margin-top:50px
+	} }
+.ToDo{
+	margin-left:100px;
+	margin-top:50px
+}
+.Doing{
+	margin-left:10px;
+	margin-top:50px
 }
 
+.Done{
+	margin-left:10px;
+	margin-top:50px
+}
+
+
 @media (min-width: 576px) and (max-width: 767.98px) { 
-	.container {
+	.card-deck  {
 		max-width: 400px;
-		margin-left: 370px;
+		margin-left: 300px;
 		}
 }
 
 
 @media (min-width: 768px) and (max-width: 991.98px) { 
-	.container {
+	.card-deck {
     max-width: 600px;
-	margin-left: 370px;
+	margin-left: 300px;
 	} }
 
 
 @media (min-width: 992px) and (max-width: 1199.98px) { 
-	.container {
+	.card-deck {
     max-width: 900px;
-	margin-left: 370px;
+	margin-left: 300px;
 	} }
 .card-deck{
 	height: 100%;
@@ -433,6 +452,7 @@ footer .container{
 	flex-direction:row;
 	flex-wrap:wrap;
 	justify-content:flex-start;
+	margin-left:100px;
 }
 .team .list-group-item:last-child {
     margin-bottom: 0;
