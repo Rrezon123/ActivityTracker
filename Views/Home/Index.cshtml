@@ -1,11 +1,100 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿<div class="row">
 <div class="statistics">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+      Activity History
+  </p>
+</figure>
 </div>
-<h2>Soon to Finish...</h2>
+</div>
+<h2 id="headerMain">Recent Tasks...</h2>
+<div class="row">
 <div class="recent-task">
-
+    <ol class="list-group list-group-flush">
+        @foreach (var item in ViewBag.ToDos)
+        {
+            <li class="list-group-item list-group-item-@item.Importance">
+                <h4>@item.Title</h4>
+                <p>@item.Description</p>
+            </li>
+        }
+    </ol>
 </div>
+</div>
+<script>
+    Highcharts.chart('container', {
+
+  title: {
+    text: 'Activity History throughout the year'
+  },
+
+  subtitle: {
+    text: ''
+  },
+
+  yAxis: {
+    title: {
+      text: 'Number of Tasks'
+    }
+  },
+
+  xAxis: {
+    accessibility: {
+      rangeDescription: 'Range: 2021 to 2022'
+    }
+  },
+
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+  },
+
+  plotOptions: {
+    series: {
+      label: {
+        connectorAllowed: false
+      },
+      pointStart: 2021
+    }
+  },
+
+  series: [{
+    name: 'ToDo',
+    data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+  }, {
+    name: 'Doing',
+    data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+  }, {
+    name: 'Done',
+    data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+  }],
+
+  responsive: {
+    rules: [{
+      condition: {
+        maxWidth: 500
+      },
+      chartOptions: {
+        legend: {
+          layout: 'horizontal',
+          align: 'center',
+          verticalAlign: 'bottom'
+        }
+      }
+    }]
+  }
+
+});
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+        
