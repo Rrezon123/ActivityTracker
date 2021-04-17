@@ -51,7 +51,11 @@ namespace ActivityTracker.Controllers
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
-            return View();
+            List<Team> Teams=_context.Teams.ToList();
+            var model = new ViewModelTeam();
+            model.ListOfTeams = Teams;
+            model.Team = new Team();
+            return View(model);
         }
 
         [HttpGet("{todoid}")]
@@ -102,6 +106,42 @@ namespace ActivityTracker.Controllers
                 return RedirectToAction("Teams");
             }
             return View("");
+        }
+         [HttpGet("Join/{teamId}/{status}")]
+        public IActionResult Join(int teamId, string status)
+        {
+            if(loggedInUser == null)
+                return RedirectToAction("Index", "SignIn");
+
+            if(!_context.Teams.Any(w => w.TeamId == teamId))
+                return RedirectToAction("Index");
+
+            if(status == "add")
+                JoinTeam(teamId);
+            else
+                LeaveTeam(teamId);
+
+            return RedirectToAction("Index");
+        }
+        private void JoinTeam(int teamId)
+        {
+            User currUser=_context.Users.FirstOrDefault(u=>u.UserId==loggedInUser.UserId);
+                
+            Team getTeam= _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
+            currUser.CurrentTeam=getTeam;
+            getTeam.AllUsers.Add(currUser);
+            
+        }
+        private void LeaveTeam(int teamId)
+        {
+             Team leave= _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
+            
+            User currUser=_context.Users.FirstOrDefault(u=>u.UserId==loggedInUser.UserId);
+            if(leave.AllUsers.Any(u=>u.UserId==loggedInUser.UserId))
+            {
+                 leave.AllUsers.Remove(currUser);
+            }
+       
         }
         public IActionResult Privacy()
         {

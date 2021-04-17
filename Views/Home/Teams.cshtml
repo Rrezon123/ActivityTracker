@@ -1,34 +1,36 @@
-@model IEnumerable<Team>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@model ViewModelTeam
 
 <div class="teams">
-    <partial name="AddTeam"/>
-    @if(Model!=null){
-    @foreach (var item in Model)
-    {
-        <div class="team">
-            <h2>@item.TeamName @{
-
-                    if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
-                    {
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId"
+    
+<partial name="AddTeam" model="Model.Team"/>
+    @* @Html.Partial("AddTeam", Model.Team) *@
+   
+        @foreach (var item in Model.ListOfTeams)
+        {
+            <div class="team">
+                <h2>@item.TeamName @{
+                        if(item.AllUsers==null){
+                            continue;
+                        }
+                        else if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
+                        {
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId"
                 asp-route-status="remove">Leave</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a>
+                        }
                     }
-                    else
+                </h2>
+                <ol class="list-group ">
+                    
+                    @foreach (var i in item.AllUsers)
                     {
-                        <a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a>
+                        <li class="list-group-item">@i.FirstName @i.LastName</li>
                     }
-                }
-            </h2>
-            <ol class="list-group ">
-                @foreach (var i in item.AllUsers)
-                {
-                    <li class="list-group-item">@i.FirstName @i.LastName</li>
-                }
-            </ol>
-        </div>
-    }
-    }
+                </ol>
+            </div>
+        }
+    
 </div>
