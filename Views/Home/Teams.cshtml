@@ -8,9 +8,9 @@
         @foreach (var item in Model.ListOfTeams)
         {
             <div class="team">
-                <h2>@item.TeamName @{
+                <h2>@item.TeamName   <a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a>@{
                         if(item.AllUsers==null){
-                            continue;
+                          continue;
                         }
                         else if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
                         {

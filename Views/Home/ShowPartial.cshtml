@@ -13,17 +13,23 @@
                 <div class="more">
                     <div class="description">
                         <h4>Description<h4>
-                                @* @if (ViewBag.ShowToDo.Description != null)
-                                {
-                                    <p> @ViewBag.ShowToDo.Description</p>
-                                } *@
                                 <p>@Model.Description</p>
 
                     </div>
                     <div class="Status">
                         <h4>Status<h4>
-                                @* <p> @ViewBag.ShowToDo.Status</p> *@
-                                <p>@Model.Status</p>
+                                @if (Model.Status == 1)
+                                {
+                                    <p>To Do</p>
+                                }
+                                else if (Model.Status == 2)
+                                {
+                                    <p>Doing</p>
+                                }
+                                else
+                                {
+                                    <p>Done</p>
+                                }
                     </div>
 
                 </div>

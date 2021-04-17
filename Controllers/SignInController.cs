@@ -34,6 +34,8 @@ namespace Activity_Center.Controllers
         {
             if(ModelState.IsValid)
             {
+                newUser.ImgUrl="https://images.iphonephotographyschool.com/22682/How-To-Blur-Background-On-iPhone.jpg";
+
                 if(_context.Users.Any(o => o.Email == newUser.Email))
                 {
                     ModelState.AddModelError("Email", "Email already in use");

@@ -33,6 +33,7 @@ namespace ActivityTracker.Controllers
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
+
             return View();
         }
         [HttpGet("ToDo")]
@@ -42,8 +43,12 @@ namespace ActivityTracker.Controllers
                 return RedirectToAction("Index", "SignIn");
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
             ViewBag.Todos = _context.ToDos;
-            var ToDo = _context.ToDos.Include(u => u.UserOfTask);
-            return View(ToDo.ToList());
+            var ToDos = _context.ToDos.Include(u => u.UserOfTask).ToList();
+            var model = new ViewModelToDo();
+            model.ListOfToDos = ToDos;
+            model.ToDo = new ToDo();
+
+            return View(model);
         }
         [HttpGet("Teams")]
         public IActionResult Teams()
@@ -51,19 +56,14 @@ namespace ActivityTracker.Controllers
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
-            List<Team> Teams=_context.Teams.ToList();
+            List<Team> Teams = _context.Teams.ToList();
             var model = new ViewModelTeam();
             model.ListOfTeams = Teams;
             model.Team = new Team();
             return View(model);
         }
 
-        [HttpGet("{todoid}")]
-        public IActionResult ShowToDo(int todoid)
-        {
-            ViewBag.ShowToDo = _context.ToDos.FirstOrDefault(todo => todo.ToDoId == todoid);
-            return RedirectToAction("ToDo");
-        }
+
         [HttpPost("AddToDo")]
         public IActionResult AddToDo(ToDo newTodo)
         {
@@ -79,7 +79,7 @@ namespace ActivityTracker.Controllers
             return View("AddPartial");
 
         }
-        [HttpPost("Update/{todoid}")]
+        [HttpGet("UpdateToDo/{todoid}")]
         public IActionResult UpdateToDo(int todoid)
         {
             ToDo editedToDo = _context.ToDos.FirstOrDefault(todo => todo.ToDoId == todoid);
@@ -96,27 +96,45 @@ namespace ActivityTracker.Controllers
             _context.SaveChanges();
             return RedirectToAction("ToDo");
         }
+        [HttpGet("UpdateBackToDo/{todoid}")]
+        public IActionResult UpdateBackToDo(int todoid)
+        {
+            ToDo editedToDo = _context.ToDos.FirstOrDefault(todo => todo.ToDoId == todoid);
+            if (editedToDo.Status == 3)
+            {
+                editedToDo.Status = 2;
+            }
+            else
+            {
+                editedToDo.Status = 1;
+            }
+
+            editedToDo.UpdatedAt = DateTime.Now;
+            _context.SaveChanges();
+            return RedirectToAction("ToDo");
+        }
         [HttpPost("TeamAdd")]
         public IActionResult TeamAdd(Team newTeam)
         {
             if (ModelState.IsValid)
             {
+                newTeam.UserId = loggedInUser.UserId;
                 _context.Teams.Add(newTeam);
                 _context.SaveChanges();
                 return RedirectToAction("Teams");
             }
             return View("");
         }
-         [HttpGet("Join/{teamId}/{status}")]
+        [HttpGet("Join/{teamId}/{status}")]
         public IActionResult Join(int teamId, string status)
         {
-            if(loggedInUser == null)
+            if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
 
-            if(!_context.Teams.Any(w => w.TeamId == teamId))
+            if (!_context.Teams.Any(w => w.TeamId == teamId))
                 return RedirectToAction("Index");
 
-            if(status == "add")
+            if (status == "add")
                 JoinTeam(teamId);
             else
                 LeaveTeam(teamId);
@@ -125,23 +143,23 @@ namespace ActivityTracker.Controllers
         }
         private void JoinTeam(int teamId)
         {
-            User currUser=_context.Users.FirstOrDefault(u=>u.UserId==loggedInUser.UserId);
-                
-            Team getTeam= _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
-            currUser.CurrentTeam=getTeam;
+            User currUser = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
+
+            Team getTeam = _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
+            currUser.CurrentTeam = getTeam;
             getTeam.AllUsers.Add(currUser);
-            
+
         }
         private void LeaveTeam(int teamId)
         {
-             Team leave= _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
-            
-            User currUser=_context.Users.FirstOrDefault(u=>u.UserId==loggedInUser.UserId);
-            if(leave.AllUsers.Any(u=>u.UserId==loggedInUser.UserId))
+            Team leave = _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
+
+            User currUser = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
+            if (leave.AllUsers.Any(u => u.UserId == loggedInUser.UserId))
             {
-                 leave.AllUsers.Remove(currUser);
+                leave.AllUsers.Remove(currUser);
             }
-       
+
         }
         public IActionResult Privacy()
         {
