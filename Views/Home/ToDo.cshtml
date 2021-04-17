@@ -10,7 +10,7 @@
                 <h3>To Do
                     <partial name="AddPartial" model="Model.ToDo" />
                 </h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==1)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)
@@ -38,7 +38,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h3>Doing</h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==2)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)
@@ -68,7 +68,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h3>Done</h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==3)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)

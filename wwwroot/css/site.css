@@ -450,11 +450,12 @@ footer .container{
     background-color: transparent;
 }
 /*-----Team-------------*/
-
+#addTeambtn{
+	margin:40px;
+}
 .container .teams{
 	display:flex;
 	flex-direction:row;
-	flex-wrap:wrap;
 	justify-content:flex-start;
 	margin-left:100px;
 }
@@ -479,3 +480,15 @@ footer .container{
 	color:#fff;
 	
 }
+.container .teams .team .header-team{
+    display: -webkit-inline-box;		
+}
+
+.container .teams .team .header-team .btn.btn-primary.team-button{
+   margin-left:20px;		
+}
+.container .teams .team .header-team a {
+	color:#fff;
+	text-decoration:none;
+		 
+ }

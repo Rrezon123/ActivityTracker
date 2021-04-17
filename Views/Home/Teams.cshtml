@@ -1,36 +1,39 @@
 @model ViewModelTeam
 
-<div class="teams">
-    
-<partial name="AddTeam" model="Model.Team"/>
-    @* @Html.Partial("AddTeam", Model.Team) *@
-   
-        @foreach (var item in Model.ListOfTeams)
-        {
-            <div class="team">
-                <h2>@item.TeamName   <a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a>@{
-                        if(item.AllUsers==null){
-                          continue;
-                        }
-                        else if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
-                        {
-                            <a class="btn btn-primary" asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId"
-                asp-route-status="remove">Leave</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a>
-                        }
-                    }
+<partial name="AddTeam" model="Model.Team" />
+<div class="teams row">
+    @foreach (var item in Model.ListOfTeams)
+    {
+        <div class="team col-lg-4">
+            <div class="header-team ">
+                <h2>@item.TeamName
                 </h2>
-                <ol class="list-group ">
-                    
+                @{
+                    if (item.AllUsers == null)
+                    {
+                        <button class="btn btn-primary team-button"><a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a></button>
+                    }
+                    else if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
+                    {
+                        <button class="btn btn-primary team-button"><a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="remove">Leave</a></button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-primary team-button"><a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a></button>
+                    }
+                }
+
+            </div>
+            <ol class="list-group ">
+                @if (item.AllUsers != null)
+                {
                     @foreach (var i in item.AllUsers)
                     {
                         <li class="list-group-item">@i.FirstName @i.LastName</li>
                     }
-                </ol>
-            </div>
-        }
-    
+                }
+            </ol>
+        </div>
+    }
+
 </div>
