@@ -32,8 +32,9 @@ namespace ActivityTracker.Controllers
         {
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
+                
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
-
+            ViewBag.ToDos=_context.ToDos.Where(t=>t.UserId==loggedInUser.UserId &&t.Status==1).ToList();
             return View();
         }
         [HttpGet("ToDo")]
