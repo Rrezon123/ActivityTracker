@@ -13,7 +13,7 @@
                     {
                         <button class="btn btn-primary team-button"><a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="add">Join</a></button>
                     }
-                    else if (item.AllUsers.Any(r => r.UserId == ViewBag.UserId))
+                    else if (item.AllUsers.Any(r => r.UserId == ViewBag.User.UserId))
                     {
                         <button class="btn btn-primary team-button"><a asp-controller="Home" asp-action="Join" asp-route-teamId="@item.TeamId" asp-route-status="remove">Leave</a></button>
                     }

@@ -7,39 +7,71 @@
     <title>@ViewData["Title"] - ActivityTracker</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
 </head>
 
 <body>
     <aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
         <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
         <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
-            <img class="rounded-pill img-fluid" width="65"
-                src="@ViewBag.User.ImgUrl"
-                alt="">
+
+            <img class="rounded-pill img-fluid" width="65" src="@ViewBag.User.ImgUrl" alt="">
             <div class="ms-2">
                 <p class="mt-1 mb-0">Welcome,</p>
                 <h5 class="fs-6 mb-0">
-                    <a class="text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">@ViewBag.User.FirstName @ViewBag.User.LastName</a>
+                    <a class="text-decoration-none" asp-area="" asp-controller="Home"
+                        asp-action="Index">@ViewBag.User.FirstName @ViewBag.User.LastName</a>
                 </h5>
-                
+
             </div>
         </div>
 
         <ul class="categories list-unstyled">
-            <li class="has-dropdown">
-                <i class="uil-estate fa-fw"></i><a asp-area="" asp-controller="Home" asp-action="Index"> Dashboard</a>
+            <li class="">
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img class="icons" src="~/images/dashboard.png">
+                    Dashboard</a>
 
             </li>
             <li class="">
-                <i class="uil-folder"></i><a asp-area="" asp-controller="Home" asp-action="ToDo"> ToDo</a>
+                <a asp-area="" asp-controller="Home" asp-action="ToDo"> <img class="icons" src="~/images/todo.png" />
+                    ToDo</a>
             </li>
-            <li class="has-dropdown">
-                <i class="uil-calendar-alt"></i><a asp-area="" asp-controller="Home" asp-action="Teams"> Teams</a>
+            <li class="">
+                <a asp-area="" asp-controller="Home" asp-action="Teams"><img class="icons" src="~/images/group.png" />
+                    Teams</a>
 
             </li>
         </ul>
     </aside>
-    <div  class="container">
+    <section id="wrapper">
+        <nav class="navbar navbar-expand-md">
+            <div class="container mx-2">
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <i class="uil-bars text-white"></i>
+                    </button>
+                    <a class="navbar-brand" href="#">Tracker<span class="main-color">.io</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="toggle-navbar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a role="button" aria-expanded="false" asp-area="" asp-controller="Signin"
+                                asp-action="Logout">Logout</a>
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -32,23 +32,25 @@
 <script>
   $(document).ready(function () {
     $.getJSON("/Home/StatsData", function (data) {
-      console.log(data);
+
       var Dates = []
+      var Qts=[]
       var QtsToDo = []
       var QtsDoing = []
       var QtsDone = []
+
       for (var i = 0; i < data.length; i++) {
         Dates.push(data[i].name.Date);
+        Qts.push(data[i].count);
         if (data[i].name.Status == 1) {
           QtsToDo.push(data[i].count);
-        } else if (data[i].name.Status  == 2) {
+        } else if (data[i].name.Status == 2) {
           QtsDoing.push(data[i].count);
         } else {
           QtsDone.push(data[i].count);
         }
       }
-      console.log(Dates);
-      console.log(QtsToDo);
+
       Highcharts.chart('container', {
 
         title: {
@@ -94,6 +96,9 @@
         }, {
           name: 'Done',
           data: QtsDone
+        },{
+          name: 'AllTasks',
+          data: Qts
 
         }
         ],

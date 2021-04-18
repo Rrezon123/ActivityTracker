@@ -35,7 +35,7 @@ namespace Activity_Center.Controllers
             if(ModelState.IsValid)
             {
                 newUser.ImgUrl="https://images.iphonephotographyschool.com/22682/How-To-Blur-Background-On-iPhone.jpg";
-
+                newUser.CurrentTeamTeamId=2;
                 if(_context.Users.Any(o => o.Email == newUser.Email))
                 {
                     ModelState.AddModelError("Email", "Email already in use");
@@ -86,6 +86,7 @@ namespace Activity_Center.Controllers
 
             return View("Index");
         }
+        
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

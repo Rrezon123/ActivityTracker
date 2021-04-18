@@ -137,7 +137,7 @@ footer .container{
 	--dk-gray-900: #000;
 	--dk-dark-bg: #000;
 	--dk-darker-bg: #000;
-	--navbar-bg-color: #e5dfec;
+	--navbar-bg-color: #281646;
 	--sidebar-bg-color: #e5dfec;
 	--sidebar-width: 250px;
 }
@@ -162,7 +162,7 @@ footer .container{
 	width: var(--sidebar-width);
 	transition: all .3s ease-in-out;
 	transform: translateX(0);
-	
+	z-index: 9999999
 }
 
 .sidebar .close-aside {
@@ -174,35 +174,27 @@ footer .container{
 }
 
 .sidebar .sidebar-header {
-	border-bottom: 1px solid #2a2b3c;
-  background-color:#e5dfec;
+	border-bottom: 1px solid #2a2b3c
 }
-.sidebar .sidebar-header .ms-2{
-  background-color:#e5dfec;
-}
-.sidebar .sidebar-header h5{
-  background-color:#e5dfec;
-  margin-left: 4px;
-}
+
 .sidebar .sidebar-header h5 a {
-	color: var(--dk-gray-300);
-  background-color:#e5dfec;
+	color: var(--dk-gray-300)
 }
 
 .sidebar .sidebar-header p {
 	color: var(--dk-gray-400);
 	font-size: .825rem;
-  background-color:#e5dfec;
-  
 }
 
+.sidebar .search .form-control ~ i {
+	color: #2b2f3a;
+	right: 40px;
+	top: 22px;
+}
 
 .sidebar > ul > li {
 	padding: .7rem 1.75rem;
-  background-color:#e5dfec ;
 }
-
-
 
 .sidebar ul > li > a {
 	color: var(--dk-gray-400);
@@ -268,8 +260,6 @@ footer .container{
 		padding: 10px 0 10px 30px
 	}
 }
-
-/*--scrollwheel----*/
 .navbar {
 	background-color: var(--navbar-bg-color) !important;
 	border: none !important;
@@ -374,6 +364,15 @@ footer .container{
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
+.rounded-pill{
+	margin-right:10px;
+}
+.icons{
+	width:30px;
+	height:30px;
+	object-fit: contain;
+}
+
 /*--------Dashboard stats------------*/
 
 .statistics{
@@ -384,7 +383,6 @@ footer .container{
   }
   .recent-task{
 	width:120%;
-	height: 300px;
 	background-color: #fff;
 	border-radius: 20px;
 	color:#000;

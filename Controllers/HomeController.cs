@@ -65,19 +65,6 @@ namespace ActivityTracker.Controllers
 
             return View(model);
         }
-        [HttpGet("Teams")]
-        public IActionResult Teams()
-        {
-            if (loggedInUser == null)
-                return RedirectToAction("Index", "SignIn");
-            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
-            List<Team> Teams = _context.Teams.ToList();
-            var model = new ViewModelTeam();
-            model.ListOfTeams = Teams;
-            model.Team = new Team();
-            return View(model);
-        }
-
 
         [HttpPost("AddToDo")]
         public IActionResult AddToDo(ToDo newTodo)
@@ -128,6 +115,22 @@ namespace ActivityTracker.Controllers
             _context.SaveChanges();
             return RedirectToAction("ToDo");
         }
+
+        [HttpGet("Teams")]
+        public IActionResult Teams()
+        {
+            if (loggedInUser == null)
+                return RedirectToAction("Index", "SignIn");
+                
+            ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
+
+            List<Team> Teams = _context.Teams.Include(u=>u.AllUsers).ToList();
+            var model = new ViewModelTeam();
+            model.ListOfTeams = Teams;
+            model.Team = new Team();
+            return View(model);
+        }
+
         [HttpPost("TeamAdd")]
         public IActionResult TeamAdd(Team newTeam)
         {
@@ -147,32 +150,37 @@ namespace ActivityTracker.Controllers
                 return RedirectToAction("Index", "SignIn");
 
             if (!_context.Teams.Any(w => w.TeamId == teamId))
-                return RedirectToAction("Index");
+                return RedirectToAction("Teams");
 
             if (status == "add")
                 JoinTeam(teamId);
             else
                 LeaveTeam(teamId);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Teams");
         }
         private void JoinTeam(int teamId)
         {
             User currUser = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
 
-            Team getTeam = _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
-            currUser.CurrentTeam = getTeam;
+            Team getTeam = _context.Teams.Include(u=>u.AllUsers).FirstOrDefault(w => w.TeamId == teamId);
+
+            currUser.CurrentTeamTeamId=getTeam.TeamId;
+            
             getTeam.AllUsers.Add(currUser);
+            _context.SaveChanges();
 
         }
         private void LeaveTeam(int teamId)
         {
-            Team leave = _context.Teams.FirstOrDefault(w => w.TeamId == teamId);
+            Team leave = _context.Teams.Include(u=>u.AllUsers).FirstOrDefault(w => w.TeamId == teamId);
 
             User currUser = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
             if (leave.AllUsers.Any(u => u.UserId == loggedInUser.UserId))
             {
-                leave.AllUsers.Remove(currUser);
+                currUser.CurrentTeamTeamId=2;
+                
+                _context.SaveChanges();
             }
 
         }
