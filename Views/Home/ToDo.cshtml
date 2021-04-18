@@ -10,7 +10,7 @@
                 <h3>To Do
                     <partial name="AddPartial" model="Model.ToDo" />
                 </h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 && l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)
@@ -24,7 +24,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">@todo.Title</h5>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore">More</button>
-                                    <partial name="ShowPartial" model="todo" />
+                                    <partial name="ShowPartial" model="todo"/>
                                     <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateToDo">Go Doing</a>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h3>Doing</h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==2 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)
@@ -52,9 +52,9 @@
                                     <h5 class="card-title">@todo.Title</h5>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore">More</button>
                                     <partial name="ShowPartial" model="todo" />
-                                    <button type="button"   asp-controller="Home"  class="btn btn-primary" asp-route-todoid="@todo.ToDoId"
-                            asp-action="UpdateToDo">Done</button>
-                            <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateBackToDo">ToDo</a>
+                                    <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateBackToDo">ToDo</a>
+                                    <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateToDo">Done</a>
+                                    
                                 </div>
                             </div>
                             
@@ -68,7 +68,7 @@
         <div class="card" style="width: 18rem;">
             <div class="card-header">
                 <h3>Done</h3>
-                <h5>@Model.ListOfToDos.Count((l=>l.Status==1 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
+                <h5>@Model.ListOfToDos.Count((l=>l.Status==3 &&l.UserId==ViewBag.User.UserId)) tasks</h5>
             </div>
             <ul class="list-group list-group-flush">
                 @if (Model.ListOfToDos != null)

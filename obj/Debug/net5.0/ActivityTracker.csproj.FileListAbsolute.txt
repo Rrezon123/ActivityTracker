@@ -149,3 +149,12 @@ D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\ActivityTracker.MvcApplicati
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\AddPartial.cshtml.g.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\ShowPartial.cshtml.g.cs
 D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Home\AddTeam.cshtml.g.cs
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Highsoft.Web.Mvc.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Host.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.Extensions.Globalization.CultureInfoCache.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

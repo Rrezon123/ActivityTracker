@@ -9,6 +9,9 @@ using ActivityTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using System.Web;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+
 namespace ActivityTracker.Controllers
 {
     public class HomeController : Controller
@@ -32,10 +35,21 @@ namespace ActivityTracker.Controllers
         {
             if (loggedInUser == null)
                 return RedirectToAction("Index", "SignIn");
-                
+
             ViewBag.User = _context.Users.FirstOrDefault(u => u.UserId == loggedInUser.UserId);
-            ViewBag.ToDos=_context.ToDos.Where(t=>t.UserId==loggedInUser.UserId &&t.Status==1).ToList();
+            ViewBag.ToDos = _context.ToDos.Where(t => t.UserId == loggedInUser.UserId && t.Status == 1).ToList();
             return View();
+        }
+
+        public ActionResult StatsData()
+        {
+
+            var data = _context.ToDos.Include(u => u.UserOfTask)
+            .Where(u => u.UserId == loggedInUser.UserId)
+            .GroupBy(d => new { d.CreatedAt.Date, d.Status})
+            .Select(g => new { name = g.Key, count = g.Count() ,status=g.Key}).ToList();
+
+            return Json(data, new Newtonsoft.Json.JsonSerializerSettings());
         }
         [HttpGet("ToDo")]
         public IActionResult ToDo()

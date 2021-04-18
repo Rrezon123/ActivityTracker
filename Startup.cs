@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
 
+
 namespace ActivityTracker
 {
     public class Startup
@@ -31,6 +32,7 @@ namespace ActivityTracker
             services.AddControllersWithViews();
             services.AddSession();
             services.AddDbContext<ToDoContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+                services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

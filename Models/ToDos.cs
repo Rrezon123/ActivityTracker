@@ -23,6 +23,5 @@ namespace ActivityTracker.Models
 
         public User UserOfTask{get;set;}
         
-
     }
 }
