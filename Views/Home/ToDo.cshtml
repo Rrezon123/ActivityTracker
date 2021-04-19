@@ -1,8 +1,4 @@
 @model ViewModelToDo
-@* @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    } *@
-
 <div class="card-deck">
     <div class="ToDo">
         <div class="card" style="width: 18rem;">
@@ -25,13 +21,13 @@
 
                                 <div class="card-body">
                                     <h5 class="card-title">@todo.Title</h5>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore" data-whatever="@todo">More</button>
-                                    @* <partial name="ShowPartial" model="todo"/> *@
+                                   
+                                    <a id="openmodal" href="javascript:void(0);" class="anchorDetail btn btn-primary"  data-id="@todo.ToDoId">Details</a>
                                     <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateToDo">Go Doing</a>
                                 </div>
                             </div>
                         }
-
+                       
                     }
                 }
             </ul>
@@ -53,8 +49,9 @@
                             <div class="card card-task bg-@todo.Importance" style="margin-top:20px;">
                                 <div class="card-body">
                                     <h5 class="card-title">@todo.Title</h5>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore">More</button>
-                                    <partial name="ShowPartial" model="todo" />
+                                    @* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ShowMore">More</button>
+                                    <partial name="ShowPartial" model="todo" /> *@
+                                    <a id="openmodal" href="javascript:void(0);" class="anchorDetail btn btn-primary"  data-id="@todo.ToDoId">Details</a>
                                     <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateBackToDo">ToDo</a>
                                     <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateToDo">Done</a>
                                     
@@ -84,7 +81,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">@todo.Title</h5>
                                     @* <button type="button" class="btn btn-primary" data-toggle="modal"  data-target="#ShowMore">More</button> *@
-                                    <partial name="ShowPartial" model="todo" />
+                                    @* <partial name="ShowPartial" model="todo" /> *@
+                                    <a id="openmodal" href="javascript:void(0);" class="anchorDetail btn btn-primary"  data-id="@todo.ToDoId">Details</a>
                                     <a  asp-controller="Home" class="btn btn-primary" asp-route-todoid="@todo.ToDoId" asp-action="UpdateBackToDo">Doing</a>
 
                                 </div>
@@ -96,7 +94,6 @@
         </div>
     </div>
 </div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{
+    Html.RenderPartial("ShowPartial");
 }
-        

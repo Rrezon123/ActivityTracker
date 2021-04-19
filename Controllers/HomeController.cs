@@ -81,6 +81,14 @@ namespace ActivityTracker.Controllers
             return View("AddPartial");
 
         }
+        public ActionResult ShowPartial(int todoid){
+            ToDo toDoModel=_context.ToDos.FirstOrDefault(t=>t.ToDoId==todoid);
+            var ToDos = _context.ToDos.Include(u => u.UserOfTask).ToList();
+            var model = new ViewModelToDo();
+            model.ListOfToDos = ToDos;
+            model.ToDo =toDoModel;
+            return PartialView("ShowPartial",model);
+        }
         [HttpGet("UpdateToDo/{todoid}")]
         public IActionResult UpdateToDo(int todoid)
         {
