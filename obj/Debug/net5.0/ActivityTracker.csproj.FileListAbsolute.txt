@@ -158,3 +158,5 @@ D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.Extensions.Globali
 D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
 D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\ActivityTracker\ActivityTracker\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\HomePage\HomePage.cshtml.g.cs
+D:\ActivityTracker\ActivityTracker\obj\Debug\net5.0\Razor\Views\Shared\Main.cshtml.g.cs

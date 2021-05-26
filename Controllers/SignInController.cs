@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Activity_Center.Controllers
 {
-    [Route("")]
+    [Route("SignIn")]
     public class SignInController : Controller
     {
         private readonly ILogger<SignInController> _logger;
